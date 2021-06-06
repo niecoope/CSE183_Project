@@ -62,7 +62,7 @@ def profile(user_id=None):
     fer = []
 
     profile_email = db(db.user.reference_auth_user == user_id).select().as_list()[0]['email']
-    print("\nprofile email\n", profile_email)
+    #print("\nprofile email\n", profile_email)
     
     fing = user_db['following']
     fer = user_db['followers']
@@ -118,7 +118,7 @@ def load_posts():
             email=r.email,
         )
     following = db(db.user.reference_auth_user == r.id).select().as_list()[0]['following']
-    print("who i am following:\n", following)
+    # am following:\n", following)
     # print("me:\n", db(db.user.reference_auth_user == r.id).select().as_list()[0])
     profile_email = db(db.user.reference_auth_user == r.id).select().as_list()[0]['profile_email']
     return dict(

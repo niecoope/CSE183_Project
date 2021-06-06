@@ -93,6 +93,7 @@ let init = (app) => {
 
     app.set_add_status = function (new_status) {
         app.vue.add_mode = new_status;
+        app.vue.add_content = "";
 
     };
 
