@@ -21,17 +21,20 @@
       </a>
     </div>
   </nav>
-  
-  <div class="container block">
-    <h1 class="title">Good Vibez</h1>
-  </div>
-  
-  <div class="container block">
-    <button @click="set_add_status(true)" class="button is-primary">
-      <i class="fa fa-plus fa-fw"></i>
-      Start a Conversation...
-    </button>
-  </div>
+
+  <nav class="level-left">
+    <div class="container block">
+      <h1 class="title">Good Vibez</h1>
+    </div>
+<!--  </nav>-->
+<!--  <nav class="level-left">-->
+    <div class="container block">
+      <button @click="set_add_status(true)" class="button is-primary">
+        <i class="fa fa-plus fa-fw"></i>
+        Start a Conversation...
+      </button>
+    </div>
+  </nav>
   
 
   <div v-if="add_mode" class = "container block">
@@ -53,10 +56,14 @@
 
   <div class="tabs is-centered">
     <li>
-      <li @click="set_show_all_posts_status(true)">
+      <li v-if="show_all_posts === true" class="is-active" @click="set_show_all_posts_status(true)">
         <a>Everybody</a>
       </li>
-      <li @click="set_show_all_posts_status(false)"><a>Who I'm Following and Me</a></li>
+      <li v-if="show_all_posts === true" @click="set_show_all_posts_status(false)"><a>Who I'm Following and Me</a></li>
+      <li v-if="show_all_posts === false" @click="set_show_all_posts_status(true)">
+        <a>Everybody</a>
+      </li>
+      <li v-if="show_all_posts === false" class="is-active" @click="set_show_all_posts_status(false)"><a>Who I'm Following and Me</a></li>
     </ul>
   </div>
         <div v-if="following.length === 1 && show_all_posts === false"> You're not following anybody. Search for Users to Follow!</div>
