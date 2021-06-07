@@ -10,18 +10,23 @@
   <p class="title is-1"> [[=user_x.first_name]] [[=user_x.last_name]]'s Profile</p>
   <h5 class="title is-5">[[=user_x.email]]</h5>
 
-  <div>
-    {{bio_body}}
-  </div>
-
-  <div v-if="!add_bio_mode && current_email === profile_email"  class="container block">
+  <article class="message is-info">
+    <div class="message-body">
+      “{{bio_body}}”
+      <p>
+        - [[=user_x.first_name]] [[=user_x.last_name]]
+      </p>
+    </div>
+    <div v-if="!add_bio_mode && current_email === profile_email"  class="container block">
       <div class="container block level-left">
         <button @click="set_bio_status(true)" class="button is-info is-rounded">
           <i class="fa fa-plus fa-fw"></i>
           Modify your bio...
         </button>
       </div>
-  </div>
+    </div>
+  </article>
+  
 
   <div v-if="add_bio_mode" class = "container block">
     <div class="form">

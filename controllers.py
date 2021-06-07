@@ -110,8 +110,8 @@ def load_posts():
     inUserTable = db(db.user.reference_auth_user == r.id).select().first()
     # following = inUserTable.as_list()
     # print(inUserTable)
-    print(f"r.id: {r.id}")
-    print(f"email: {email}")
+    #print(f"r.id: {r.id}")
+    #print(f"email: {email}")
 
     if inUserTable is None and email != "Unknown":
         nofollowersorfollowingyet = []
@@ -122,18 +122,18 @@ def load_posts():
             following=nofollowersorfollowingyet,
             email=r.email,
         )
-        print(db.user)
-        print("\n\n AFTER INSERT LOAD POSTS")
-        print(f"1: {db(db.user.reference_auth_user == r.id).select().as_list()[0]}")
-        print(f"2: {db(db.user.reference_auth_user == r.id).select().as_list()}")
+        #print(db.user)
+        #print("\n\n AFTER INSERT LOAD POSTS")
+        # print(f"1: {db(db.user.reference_auth_user == r.id).select().as_list()[0]}")
+        # print(f"2: {db(db.user.reference_auth_user == r.id).select().as_list()}")
     following = db(db.user.reference_auth_user == r.id).select().as_list()[0]['following']
     # am following:\n", following)
     # print("me:\n", db(db.user.reference_auth_user == r.id).select().as_list()[0])
     profile_email = db(db.user.reference_auth_user == r.id).select().as_list()[0]['profile_email']
-    print(f"profile email: {profile_email}")
+    # print(f"profile email: {profile_email}")
     if profile_email is not None:
         bio_body = db(db.user.email == profile_email).select().as_list()[0]['bio']
-        print(f"bio body: {bio_body}")
+        #print(f"bio body: {bio_body}")
     else:
         bio_body = ""
     return dict(
@@ -171,7 +171,7 @@ def add_post():
 @action.uses(url_signer.verify(), auth , db)
 def add_post():
     bio_content = request.json.get('bio_content')
-    print(bio_content)
+    # print(bio_content)
     db.user.update_or_insert(
         (db.user.email == get_user_email()),
         bio = bio_content
