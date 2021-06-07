@@ -12,6 +12,9 @@ let init = (app) => {
         // Complete as you see fit.
         add_mode: false,
         add_content: "",
+        add_bio:"",
+        bio_body: "",
+        add_bio_mode: false,
         current_email: "",
         user_to_follow: "",
         rows: [],
@@ -31,6 +34,22 @@ let init = (app) => {
         return a;
     };
 
+    app.add_b = function () {
+        axios.post(bio_url,
+            {
+                bio_content: app.vue.add_bio,
+            }).then(function (response) {
+                app.vue.bio_body = response.data.bio_body
+                console.log("what the fuck")
+                console.log(response.data.bio_body)
+                app.set_bio_status(false);
+            });
+    };
+
+    app.set_bio_status = function (new_status) {
+        app.vue.add_bio_mode = new_status;
+        app.vue.add_bio = "";
+    };   
     app.add_post = function () {
         axios.post(add_post_url,
             {
@@ -177,7 +196,6 @@ let init = (app) => {
             app.vue.results = [];
         }
     };
-
     app.follow_user = function (profile_email) {
         //console.log("in follow user");
         //console.log(profile_email)'
@@ -220,6 +238,8 @@ let init = (app) => {
         add_comment: app.add_comment,
         delete_comment: app.delete_comment,
         search: app.search,
+        add_b: app.add_b,
+        set_bio_status: app.set_bio_status,
         follow_user: app.follow_user,
         unfollow_user: app.unfollow_user,
         set_show_comment_status: app.set_show_comment_status,
@@ -243,6 +263,7 @@ let init = (app) => {
             app.vue.current_email = response.data.email;
             app.vue.following = response.data.following;
             app.vue.profile_email = response.data.profile_email;
+            app.vue.bio_body = response.data.bio_body;
 //            console.log("following: ", app.vue.following);
             for (let i = 0; i < temprows.length; i++){
                 temprows[i].show_likers = false;

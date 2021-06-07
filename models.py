@@ -25,6 +25,7 @@ db.define_table('user',
                 Field('followers', 'list:string'),
                 Field('following', 'list:string'),
                 Field('email'),
+                Field('bio'),
                 Field('profile_image_url'),
                 Field('profile_email'),
                 )

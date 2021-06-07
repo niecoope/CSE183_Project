@@ -100,8 +100,10 @@
       <div  class="media-content">
         <div class="content">
           <p>
-            <a class="button is-rounded" :href="'[[=URL('profile') ]]' + '/' + r.user_id">
-            {{r.name}}
+            <a :href="'[[=URL('profile') ]]' + '/' + r.user_id">
+              <b>
+                {{r.name}}
+              </b>
             </a>
           </p>
 
@@ -150,8 +152,10 @@
               <div class="message-body" v-for="(comment, index) in r.comment_content">
                 <div class="content">
                   <p>
-                    <a class="button is-rounded" :href="'[[=URL('profile') ]]' + '/' + r.comment_authuserid[index]">
-                      {{r.comment_name[index]}}
+                    <a :href="'[[=URL('profile') ]]' + '/' + r.comment_authuserid[index]">
+                      <b>
+                        {{r.comment_name[index]}}      
+                      </b>
                     </a>
                   </p>
       

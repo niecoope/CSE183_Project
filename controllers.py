@@ -83,10 +83,12 @@ def profile(user_id=None):
         rows = rows,
         user_x = user_x,
         u_email = user_x.email,
+        u_db = user_db,
         num_rows = num_rows,
         num_fing = num_fing,
         num_fer = num_fer,
         follow_user_url=URL('follow_user', signer=url_signer),
+        bio_url=URL('add_bio', signer=url_signer),
         unfollow_user_url=URL('unfollow_user', signer=url_signer),
         load_posts_url=URL('load_posts', signer=url_signer),
         add_post_url=URL('add_post', signer=url_signer),
@@ -108,6 +110,9 @@ def load_posts():
     inUserTable = db(db.user.reference_auth_user == r.id).select().first()
     # following = inUserTable.as_list()
     # print(inUserTable)
+    print(f"r.id: {r.id}")
+    print(f"email: {email}")
+
     if inUserTable is None and email != "Unknown":
         nofollowersorfollowingyet = []
         nofollowersorfollowingyet.append(email)
@@ -117,15 +122,26 @@ def load_posts():
             following=nofollowersorfollowingyet,
             email=r.email,
         )
+        print(db.user)
+        print("\n\n AFTER INSERT LOAD POSTS")
+        print(f"1: {db(db.user.reference_auth_user == r.id).select().as_list()[0]}")
+        print(f"2: {db(db.user.reference_auth_user == r.id).select().as_list()}")
     following = db(db.user.reference_auth_user == r.id).select().as_list()[0]['following']
     # am following:\n", following)
     # print("me:\n", db(db.user.reference_auth_user == r.id).select().as_list()[0])
     profile_email = db(db.user.reference_auth_user == r.id).select().as_list()[0]['profile_email']
+    print(f"profile email: {profile_email}")
+    if profile_email is not None:
+        bio_body = db(db.user.email == profile_email).select().as_list()[0]['bio']
+        print(f"bio body: {bio_body}")
+    else:
+        bio_body = ""
     return dict(
         rows=rows,
         email=email,
         following=following,
         profile_email=profile_email,
+        bio_body=bio_body,
     )
 
 
@@ -150,6 +166,18 @@ def add_post():
         email=email,
         user_id = r.id
     )
+
+@action('add_bio', method="POST")
+@action.uses(url_signer.verify(), auth , db)
+def add_post():
+    bio_content = request.json.get('bio_content')
+    print(bio_content)
+    db.user.update_or_insert(
+        (db.user.email == get_user_email()),
+        bio = bio_content
+    )
+    return dict(bio_body = bio_content)
+
 
 @action('modify_post', method='POST')
 @action.uses(url_signer.verify(), auth, db)

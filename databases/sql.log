@@ -1,4 +1,4 @@
-timestamp: 2021-05-10T12:36:17.347017
+timestamp: 2021-06-06T23:08:54.211670
 CREATE TABLE "py4web_session"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "rkey" CHAR(512),
@@ -8,7 +8,7 @@ CREATE TABLE "py4web_session"(
     "expires_on" TIMESTAMP
 );
 success!
-timestamp: 2021-05-10T12:36:17.356444
+timestamp: 2021-06-06T23:08:54.214294
 CREATE TABLE "auth_user"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "email" CHAR(512) UNIQUE,
@@ -21,347 +21,37 @@ CREATE TABLE "auth_user"(
     "past_passwords_hash" TEXT
 );
 success!
-timestamp: 2021-05-10T12:36:17.360013
+timestamp: 2021-06-06T23:08:54.216185
 CREATE TABLE "auth_user_tag_groups"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "path" CHAR(512),
     "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
 );
 success!
-timestamp: 2021-05-11T08:30:05.288180
-CREATE TABLE "post"(
-    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "content" CHAR(512)
-);
-success!
-timestamp: 2021-05-13T10:23:19.880072
-ALTER TABLE "post" ADD "name" CHAR(512);
-success!
-timestamp: 2021-05-13T11:04:03.511514
-ALTER TABLE "post" ADD "email" CHAR(512);
-success!
-timestamp: 2021-05-14T10:26:41.698304
-ALTER TABLE "post" ADD "dislikes" CHAR(512);
-timestamp: 2021-05-14T10:26:41.702072
-ALTER TABLE "post" ADD "likes" CHAR(512);
-success!
-success!
-timestamp: 2021-05-14T11:55:13.826260
-ALTER TABLE "post" ADD "thumbsup" CHAR(1);
-timestamp: 2021-05-14T11:55:13.829059
-ALTER TABLE "post" ADD "thumbsdown" CHAR(1);
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2021-05-25T08:54:36.305841
-ALTER TABLE "post" ADD "comment_content" TEXT;
-timestamp: 2021-05-25T08:54:36.308898
-ALTER TABLE "post" ADD "comment_name" TEXT;
-timestamp: 2021-05-25T08:54:36.311201
-ALTER TABLE "post" ADD "comment_email" TEXT;
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2021-05-25T13:53:46.307459
-ALTER TABLE "post" ADD "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ;
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2021-05-28T13:24:59.436255
+timestamp: 2021-06-06T23:08:54.321567
 CREATE TABLE "user"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "reference_auth_user" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
     "followers" TEXT,
     "following" TEXT,
-    "profile_image_url" CHAR(512)
+    "email" CHAR(512),
+    "bio" CHAR(512),
+    "profile_image_url" CHAR(512),
+    "profile_email" CHAR(512)
 );
 success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2021-05-28T15:48:12.439012
-ALTER TABLE "post" ADD "comment_authuserid" TEXT;
-success!
-success!
-success!
-success!
-timestamp: 2021-05-28T16:48:06.497835
-ALTER TABLE "user" ADD "email" CHAR(512);
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2021-05-30T22:53:15.911729
-ALTER TABLE "user" ADD "profile_img" CHAR(512);
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2021-06-06T12:08:11.325459
-ALTER TABLE "user" ADD "profile_email" CHAR(512);
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
+timestamp: 2021-06-06T23:08:54.323441
+CREATE TABLE "post"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "content" CHAR(512),
+    "name" CHAR(512),
+    "email" CHAR(512),
+    "comment_content" TEXT,
+    "comment_name" TEXT,
+    "comment_email" TEXT,
+    "comment_authuserid" TEXT,
+    "dislikes" TEXT,
+    "likes" TEXT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  
+);
 success!
