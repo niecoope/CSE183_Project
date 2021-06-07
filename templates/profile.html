@@ -8,6 +8,8 @@
 <div class="section" id="vue-target" style="background-color:rgb(240, 245, 247)">
   <!-- Put the table here -->
   <p class="title is-1"> [[=user_x.first_name]] [[=user_x.last_name]]'s Profile</p>
+  <h5 class="title is-5">[[=user_x.email]]</h5>
+
   <nav class="level" v-if="current_email !== '[[=u_email]]' ">
     <div class="level-left">
       <span v-if="!following.includes(profile_email)">
@@ -83,22 +85,23 @@
           </div>
           <div class = "level-right">
             <div v-if="r.email === current_email" class="level-item">
-              <button @click="delete_post(r._idx)" class="button is-danger"> <i class="fa fa-trash fa-2x"></i></button>
+              <button @click="delete_post(r._idx)" class="button is-danger is-rounded"> <i class="fa fa-trash fa-2x"></i></button>
             </div>
           </div>
         </nav>
       </div>
       <br>
       <div v-if="!r.show_comment_mode">
-        <button @click="set_show_comment_status(true, r._idx)" class="button is-warning is-light">
-            <i class="fa fa-eye"></i>
+        <button @click="set_show_comment_status(true, r._idx)" class="button is-warning is-light is-rounded">
+            <i style="padding-right: 6px" class="fa fa-eye "></i>
+            Show comments
         </button>
       </div>
       <div v-if="r.show_comment_mode">
         <div class="box" style="background-color:rgba(241, 239, 239, 0.418);" v-for="(comment, index) in r.comment_content">
           <div class="content">
             <p style="color:rgba(145, 145, 145, 0.767)">
-              <a class="button" :href="'[[=URL('profile') ]]' + '/' + r.comment_authuserid[index]">
+              <a class="button is-rounded" :href="'[[=URL('profile') ]]' + '/' + r.comment_authuserid[index]">
                 {{r.comment_name[index]}}
               </a>
             </p>
@@ -110,19 +113,20 @@
           
           <div class="level-right">
             <div v-if="r.comment_email[index] === current_email" class="level-item">
-              <button @click="delete_comment(r._idx, index)" class="button is-danger"> <i class="fa fa-trash fa-2x"></i></button>
+              <button @click="delete_comment(r._idx, index)" class="button is-danger is-rounded"> <i class="fa fa-trash fa-2x"></i></button>
           </div>
           </div>
         </div>
         <nav class="level">
           <div class="level-left">
             <div class="container block">
-              <button @click="set_show_comment_status(false, r._idx)" class="button is-danger is-light">
+              <button @click="set_show_comment_status(false, r._idx)" class="button is-danger is-light is-rounded">
                 <i class="fa fa-eye-slash"></i>
+                Hide comments
               </button>
             </div>
           </div>
-          <div class="level-item">
+          <div class="level-item" v-if="!r.add_comment_mode">
             <div class="container block">
               <button @click="set_add_comment_status(r._idx, true)" class="button is-primary is-rounded">
                 <i class="fa fa-comment fa-fw"></i>

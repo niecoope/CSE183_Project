@@ -22,25 +22,30 @@
     
   </nav>
 
-
-  <div class="dropdown is-hoverable level-right">
-    <div class="dropdown-trigger">
-      <div class="control block">
-        <input class="input" type="text" v-model="query" @keyup="search" placeholder="Search for Users" style="width: 500px;" />
+  <nav class="level-right">
+    <div class="dropdown is-hoverable level-right">
+      <div class="dropdown-trigger level-right">
+        <div class="control block level-right">
+          <input class="input" type="text" v-model="query" @keyup="search" placeholder="Search for Users" style="width: 400px;" />
+        </div>
       </div>
-    </div>
-    <div class="dropdown-menu level-right" id="dropdown-menu5" role="menu">
-      <div class="dropdown-content level-right">
-        <div class="dropdown-item level-right">
-          <div class="level-right" v-for="r in results">
-            <a class="button" :href="'[[=URL('profile') ]]' + '/' + r[2]">
-              {{r[0]}} 
+  
+      <div class="dropdown-menu" id="dropdown-menu5" role="menu">
+        <div class="dropdown-content" style="width: 400px;">
+          <div class="dropdown-item is-centered" v-for="r in results">
+            <a :href="'[[=URL('profile') ]]' + '/' + r[2]">
+              <hr class="dropdown-divider">
+              <p1 class="is-centered">
+                {{r[0]}}
+              </p1> 
             </a>
           </div>
+          <hr class="dropdown-divider">
         </div>
       </div>
     </div>
-  </div>
+  </nav>
+  
 
 <!-- 
 <nav class="level-right">
@@ -182,7 +187,7 @@
                   Hide comments
                 </button>
               </div>
-              <div class="level-item">
+              <div class="level-item" v-if="!r.add_comment_mode">
                 <div class="container block">
                   <button @click="set_add_comment_status(r._idx, true)" class="button is-primary is-rounded">
                     <i class="fa fa-comment fa-fw"></i>
