@@ -66,7 +66,7 @@
   <div v-if="!add_mode" class="container block">
     <nav>
       <div class="container block level-left">
-        <button @click="set_add_status(true)" class="button is-primary is-rounded">
+        <button @click="set_add_status(true)" class="button is-info is-rounded">
           <i class="fa fa-plus fa-fw"></i>
           Start a Conversation...
         </button>
@@ -175,7 +175,7 @@
             </div>
             <div class="level-item" v-if="!r.add_comment_mode">
               <div class="container block">
-                <button @click="set_add_comment_status(r._idx, true)" class="button is-primary is-rounded">
+                <button @click="set_add_comment_status(r._idx, true)" class="button is-info is-rounded">
                   <i class="fa fa-comment fa-fw"></i>
                   Add a Comment
                 </button>
@@ -192,7 +192,7 @@
               </div>
               <div class="field">
                 <div class="control">
-                  <input type="submit" @click="add_comment(r._idx)" value="Comment" class="button is-primary is-rounded">
+                  <input type="submit" @click="add_comment(r._idx)" value="Comment" class="button is-info is-rounded">
                   <input type="submit" @click="set_add_comment_status(r._idx, false)" value="Cancel" class="button is-warning is-rounded">
                 </div>
               </div>
