@@ -13,24 +13,50 @@
     <nav class="level-left">
       <div class="level-left">
         <h1 class="title is-1 level-left">
-          <a style="color:rgb(135, 146, 150)">
+          <p style="color:rgb(79, 83, 85)">
             Welcome To Good Vibez
-          </a>
+          </p>
         </h1>
-      </div>
-    </nav>
-    <nav class="level-right">
-      <div class="control block level-right">
-        <input class="input" type="text" v-model="query" @keyup="search" placeholder="Search for Users" style="width: 500px;" />
-      </div>
-      <div class="level-right" v-for="r in results">
-        <a class="button" :href="'[[=URL('profile') ]]' + '/' + r[2]">
-          {{r[0]}} 
-        </a>
       </div>
     </nav>
     
   </nav>
+
+
+  <div class="dropdown is-hoverable level-right">
+    <div class="dropdown-trigger">
+      <div class="control block">
+        <input class="input" type="text" v-model="query" @keyup="search" placeholder="Search for Users" style="width: 500px;" />
+      </div>
+    </div>
+    <div class="dropdown-menu level-right" id="dropdown-menu5" role="menu">
+      <div class="dropdown-content level-right">
+        <div class="dropdown-item level-right">
+          <div class="level-right" v-for="r in results">
+            <a class="button" :href="'[[=URL('profile') ]]' + '/' + r[2]">
+              {{r[0]}} 
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- 
+<nav class="level-right">
+    <div class="control block level-right">
+      <input class="input" type="text" v-model="query" @keyup="search" placeholder="Search for Users" style="width: 500px;" />
+    </div>
+  </nav>
+  
+  <div class="level-right" v-for="r in results">
+    <a class="button" :href="'[[=URL('profile') ]]' + '/' + r[2]">
+      {{r[0]}} 
+    </a>
+  </div>
+--> 
+  
+
   <div class="tabs is-centered">
     <ul>
       <li v-if="show_all_posts === false" class="is-active" @click="set_show_all_posts_status(false)"><a>Your Feed</a></li>
@@ -164,9 +190,6 @@
                   </button>
                 </div>
               </div>
-              
-
-
             </nav>
             <div v-if="r.add_comment_mode" class = "container block">
               <div class="form">

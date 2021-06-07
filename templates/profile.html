@@ -5,7 +5,7 @@
   }
 </style>
 
-<div class="section" id="vue-target">
+<div class="section" id="vue-target" style="background-color:rgb(240, 245, 247)">
   <!-- Put the table here -->
   <p class="title is-1"> [[=user_x.first_name]] [[=user_x.last_name]]'s Profile</p>
   <nav class="level" v-if="current_email !== '[[=u_email]]' ">
@@ -122,7 +122,31 @@
               </button>
             </div>
           </div>
+          <div class="level-item">
+            <div class="container block">
+              <button @click="set_add_comment_status(r._idx, true)" class="button is-primary is-rounded">
+                <i class="fa fa-comment fa-fw"></i>
+                Add a Comment
+              </button>
+            </div>
+          </div>
         </nav>
+        <div v-if="r.add_comment_mode" class = "container block">
+          <div class="form">
+            <div class="field">
+              <label class="label"></label>
+              <div class="control">
+                <textarea class="textarea input" v-model="r.add_comment_content"></textarea>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input type="submit" @click="add_comment(r._idx)" value="Comment" class="button is-primary is-rounded">
+                <input type="submit" @click="set_add_comment_status(r._idx, false)" value="Cancel" class="button is-warning is-rounded">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       
 

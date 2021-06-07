@@ -163,6 +163,8 @@ let init = (app) => {
 
     app.set_add_comment_status = function (row_idx, new_status) {
         Vue.set(app.vue.rows[row_idx], 'add_comment_mode', new_status);
+        app.vue.rows[row_idx].add_comment_content = "";
+
     };
 
     app.search = function () {
