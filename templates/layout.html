@@ -21,13 +21,8 @@
           <a class="navbar-item is-light fa fa-user fa-2x" href="[[=URL('profile') + '/']][[=globals().get('user').get('id')]]">
             Your Profile
           </a>
-        [[else:]]
-          <a>
-
-          </a>
         [[pass]]
-
-
+        
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="the-navbar-menu"
            onclick="this.classList.toggle('is-active');document.getElementById(this.dataset.target).classList.toggle('is-active');">
           <span aria-hidden="true"></span>
@@ -59,6 +54,7 @@
               [[else:]]
                 <a class="button is-link" href="[[=URL('auth/register')]]">Sign up</a>
                 <a class="button is-success" href="[[=URL('auth/login')]]">Log in</a>
+                <a class="button is-link" href="[[=URL('auth/plugin/oauth2google/login', vars=dict(next='../index'))]]">Log in with Google</a>
               [[pass]]
             </div>
           </div>
